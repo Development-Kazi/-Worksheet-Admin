@@ -1,0 +1,85 @@
+.worksheet-add-page {
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --border: #dbe3ef;
+  color: var(--text-primary);
+}
+
+.worksheet-add-header {
+  margin-bottom: 1rem;
+}
+
+.worksheet-add-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.worksheet-add-header p {
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary);
+}
+
+.worksheet-add-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.worksheet-add-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.worksheet-add-card h5 {
+  margin: 0 0 0.85rem;
+  font-weight: 700;
+}
+
+.worksheet-add-form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #0f172a !important;
+  font-weight: 700;
+  font-size: 0.86rem;
+}
+
+.worksheet-add-form .form-control,
+.worksheet-add-form .form-select,
+.worksheet-add-form textarea {
+  color: var(--text-primary) !important;
+  background-color: #ffffff;
+  border-color: #cdd9ea;
+  font-weight: 500;
+}
+
+.worksheet-add-form .form-control::placeholder,
+.worksheet-add-form textarea::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+.worksheet-add-form .form-control:focus,
+.worksheet-add-form .form-select:focus,
+.worksheet-add-form textarea:focus {
+  color: var(--text-primary) !important;
+  border-color: #93b4ee;
+  box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, 0.12);
+}
+
+.worksheet-add-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+}
+
+@media (max-width: 767px) {
+  .worksheet-add-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

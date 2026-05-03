@@ -1,0 +1,63 @@
+.settings-page {
+  --sp-bg: #f6f9ff;
+  --sp-card: #ffffff;
+  --sp-border: #d8e2f4;
+  --sp-text: #1f2a44;
+  --sp-muted: #54627d;
+  --sp-primary: #2563eb;
+}
+
+.settings-header h2 {
+  color: var(--sp-text);
+  margin-bottom: 6px;
+}
+
+.settings-header p {
+  color: var(--sp-muted);
+  margin-bottom: 16px;
+}
+
+.settings-card {
+  max-width: 640px;
+  background: var(--sp-card);
+  border: 1px solid var(--sp-border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.settings-card h5 {
+  color: var(--sp-text);
+  margin-bottom: 14px;
+}
+
+.settings-form {
+  display: grid;
+  gap: 12px;
+}
+
+.settings-form label {
+  display: block;
+  font-weight: 600;
+  color: var(--sp-text);
+  margin-bottom: 6px;
+}
+
+.settings-form .form-control {
+  border: 1px solid #ccd8f0;
+  color: #16213b;
+}
+
+.settings-form .form-control::placeholder {
+  color: #6b7a98;
+}
+
+.settings-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+.settings-actions .btn-primary {
+  background: var(--sp-primary);
+  border-color: var(--sp-primary);
+}

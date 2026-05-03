@@ -1,0 +1,82 @@
+.PartyPDF .statement-container {
+  background-color: white;
+}
+
+.PartyPDF header {
+  text-align: left;
+  color: #7c49f4;
+  margin-bottom: 20px;
+}
+
+.PartyPDF header h1 {
+  font-size: 24px;
+  color: black !important;
+}
+
+.PartyPDF header p {
+  font-size: 14px;
+  color: black !important;
+}
+
+.PartyPDF .account-info {
+  margin-bottom: 30px;
+  color: black !important;
+}
+
+.PartyPDF .account-holder,
+.account-details {
+  color: black !important;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.PartyPDF .account-details p,
+.account-holder p {
+  margin-bottom: 5px;
+  color: black !important;
+}
+
+.PartyPDF .balance-info {
+  color: black !important;
+  display: flex;
+  justify-content: start;
+  margin-bottom: 30px;
+  gap: 50px;
+}
+
+.PartyPDF .balance p {
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: black !important;
+}
+
+.PartyPDF .balance strong {
+  color: black !important;
+  display: block;
+}
+
+.PartyPDF table {
+  color: black !important;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.PartyPDF table th,
+table td {
+  color: black !important;
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.PartyPDF table th {
+  background-color: #f2f2f2;
+  color: black !important;
+}
+
+.PartyPDF table td {
+  color: black !important;
+  background-color: #fff;
+}

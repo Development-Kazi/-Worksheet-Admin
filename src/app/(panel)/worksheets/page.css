@@ -1,0 +1,94 @@
+.worksheet-page {
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --border: #dbe3ef;
+  color: var(--text-primary);
+}
+
+.worksheet-header {
+  margin-bottom: 1rem;
+}
+
+.worksheet-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.worksheet-header h2 {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.worksheet-header p {
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary);
+}
+
+.worksheet-table-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.worksheet-table-head span {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.worksheet-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.worksheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 760px;
+}
+
+.worksheet-table th,
+.worksheet-table td {
+  border-bottom: 1px solid #edf2fa;
+  padding: 0.65rem 0.7rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.worksheet-table thead th {
+  background: #f8fbff;
+  font-weight: 700;
+}
+
+.worksheet-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.status-chip {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.status-chip.is-active {
+  background: #eafaf0;
+  color: #166534;
+}
+
+.status-chip.is-draft {
+  background: #fff7e8;
+  color: #92400e;
+}

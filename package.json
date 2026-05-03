@@ -1,0 +1,46 @@
+{
+  "name": "OTCTech-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@next/third-parties": "^14.2.4",
+    "@tinymce/tinymce-react": "^5.1.1",
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.4",
+    "cloudinary": "^2.4.0",
+    "datatables.net": "^2.1.6",
+    "datatables.net-dt": "^2.1.6",
+    "datatables.net-rowreorder": "^1.5.0",
+    "formik": "^2.4.6",
+    "html-react-parser": "^5.1.10",
+    "html2pdf.js": "^0.10.2",
+    "jose": "^5.6.3",
+    "jquery": "^3.7.1",
+    "js-cookie": "^3.0.5",
+    "jsonexport": "^3.2.0",
+    "moment": "^2.30.1",
+    "multer": "^1.4.5-lts.1",
+    "next": "^14.2.11",
+    "next-auth": "^4.24.7",
+    "notistack": "^3.0.1",
+    "papaparse": "^5.5.2",
+    "react": "^18",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-bootstrap": "^2.10.4",
+    "react-dom": "^18",
+    "react-select": "^5.8.0",
+    "react-tooltip": "^5.28.0",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5"
+  }
+}

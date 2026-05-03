@@ -1,0 +1,268 @@
+.dynoba-dashboard {
+  --brand-blue: #2563eb;
+  --brand-blue-soft: #f2f7ff;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --border: #dbe3ef;
+  color: var(--text-primary);
+}
+
+.dynoba-hero {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.dynoba-badge {
+  display: inline-block;
+  margin: 0 0 0.5rem;
+  background: var(--brand-blue-soft);
+  color: var(--brand-blue);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.dynoba-subtitle {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.dynoba-welcome {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.dynoba-label {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.dynoba-welcome strong {
+  color: var(--text-primary);
+}
+
+.dynoba-stat-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.04);
+}
+
+.dynoba-stat-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.dynoba-stat-head h6 {
+  margin: 0;
+  font-weight: 700;
+}
+
+.dynoba-stat-head i {
+  color: var(--brand-blue);
+}
+
+.dynoba-stat-value {
+  font-size: 1.9rem;
+  line-height: 1.1;
+  margin-top: 0.45rem;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dynoba-stat-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.dynoba-panel-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  height: 100%;
+}
+
+.dynoba-panel-card h5 {
+  margin-bottom: 0.4rem;
+  color: #0f172a !important;
+  font-weight: 700;
+}
+
+.dynoba-panel-card p {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.dynoba-model-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.dynoba-model-list li {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dynoba-model-list span {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.dynoba-model-list small {
+  color: var(--brand-blue);
+  background: var(--brand-blue-soft);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-weight: 600;
+}
+
+.dynoba-chip-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dynoba-chip {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  border: 1px solid #c8d8f5;
+  background: var(--brand-blue-soft);
+  border-radius: 8px;
+  padding: 0.25rem 0.65rem;
+  font-weight: 600;
+}
+
+.dynoba-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.dynoba-panel-header span {
+  color: var(--brand-blue);
+  font-size: 0.8rem;
+  background: var(--brand-blue-soft);
+  border: 1px solid #c8d8f5;
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  font-weight: 600;
+}
+
+.dynoba-table-wrap {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.dynoba-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+}
+
+.dynoba-table th,
+.dynoba-table td {
+  padding: 0.7rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #edf2fa;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.dynoba-table thead th {
+  background: #f8fbff;
+  font-weight: 700;
+  color: #0f172a !important;
+}
+
+.dynoba-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.dynoba-filters {
+  display: grid;
+  grid-template-columns: 1fr 180px 220px;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.dynoba-filter label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #0f172a !important;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.dynoba-filters .form-control,
+.dynoba-filters .form-select {
+  color: var(--text-primary) !important;
+  border-color: #cdd9ea;
+}
+
+.dynoba-filters .form-control::placeholder {
+  color: #64748b !important;
+  opacity: 1;
+}
+
+.dynoba-status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.18rem 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.dynoba-status.is-published {
+  background: #eafaf0;
+  color: #166534;
+}
+
+.dynoba-status.is-draft {
+  background: #fff7e8;
+  color: #92400e;
+}
+
+.dynoba-status.is-review {
+  background: #eaf2ff;
+  color: #1e3a8a;
+}
+
+@media (max-width: 768px) {
+  .dynoba-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dynoba-welcome {
+    text-align: left;
+  }
+
+  .dynoba-filters {
+    grid-template-columns: 1fr;
+  }
+}
