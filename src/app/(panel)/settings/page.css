@@ -1,63 +1,50 @@
 .settings-page {
-  --sp-bg: #f6f9ff;
-  --sp-card: #ffffff;
-  --sp-border: #d8e2f4;
-  --sp-text: #1f2a44;
-  --sp-muted: #54627d;
-  --sp-primary: #2563eb;
+  padding-top: 0.5rem;
 }
 
-.settings-header h2 {
-  color: var(--sp-text);
-  margin-bottom: 6px;
-}
-
-.settings-header p {
-  color: var(--sp-muted);
-  margin-bottom: 16px;
+.settings-header {
+  margin-bottom: 2rem;
 }
 
 .settings-card {
-  max-width: 640px;
-  background: var(--sp-card);
-  border: 1px solid var(--sp-border);
-  border-radius: 14px;
-  padding: 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 600px;
 }
 
 .settings-card h5 {
-  color: var(--sp-text);
-  margin-bottom: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
 }
 
 .settings-form {
-  display: grid;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .settings-form label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
   display: block;
-  font-weight: 600;
-  color: var(--sp-text);
-  margin-bottom: 6px;
-}
-
-.settings-form .form-control {
-  border: 1px solid #ccd8f0;
-  color: #16213b;
-}
-
-.settings-form .form-control::placeholder {
-  color: #6b7a98;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .settings-actions {
-  margin-top: 8px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
 }
 
-.settings-actions .btn-primary {
-  background: var(--sp-primary);
-  border-color: var(--sp-primary);
+.settings-actions .btn {
+  height: 48px;
+  padding: 0 24px !important;
 }

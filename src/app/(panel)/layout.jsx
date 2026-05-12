@@ -1,16 +1,16 @@
-import { Rubik } from "next/font/google";
+import { Inter } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.css";
 import "../globals.css";
+import "../modern-admin.css";
 import Header from "@/component/Header";
 import Sidebar from "@/component/Sidebar";
 import { UserProvider } from "@/context/UserContext";
 import { LoaderProvider } from "@/context/LoaderProvider";
-const rubik = Rubik({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Worksheet",
-  description: "Worksheet",
-  keywords: ["Worksheet"],
+  title: "Worksheet Admin",
+  description: "Worksheet Admin Panel",
 };
 
 export default function RootLayout({ children }) {
@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
           />
           <link rel="icon" href="/favicon.ico" sizes="any" />
         </head>
-        <body className={`${rubik.className}`} data-background-color="">
+        <body className={inter.className}>
           <div className="wrapper">
             <Sidebar />
             <div className="main-panel overflow-x-hidden">

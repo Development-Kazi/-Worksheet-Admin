@@ -117,76 +117,6 @@ export default function Home() {
       }));
   }, [worksheets, categoryMap]);
 
-  const categoryWorksheetCounts = useMemo(() => {
-    const counts = {};
-    worksheets.forEach((w) => {
-      if (w.status === "deleted") return;
-      const catId = w.category?._id || w.category;
-      if (!catId) return;
-      counts[catId] = (counts[catId] || 0) + 1;
-    });
-    return counts;
-  }, [worksheets]);
-
-  const [categoryQuery, setCategoryQuery] = useState("");
-  const [categoryStatus, setCategoryStatus] = useState("all");
-  const [categorySort, setCategorySort] = useState("order_asc");
-
-  const categoryRows = useMemo(() => {
-    const rows = categories.map((c) => {
-      const parentName = c.parent ? categoryMap[c.parent]?.name || "-" : "-";
-      const path = buildCategoryPath(c._id);
-      return {
-        _id: c._id,
-        name: c.name || "-",
-        parentName,
-        path,
-        order: typeof c.order === "number" ? c.order : Number(c.order || 0),
-        worksheets: categoryWorksheetCounts[c._id] || 0,
-        status: (c.status || "active").toLowerCase(),
-        updatedAt: c.updatedAt || c.createdAt || "",
-      };
-    });
-
-    const q = categoryQuery.trim().toLowerCase();
-    const filtered = rows.filter((r) => {
-      const matchesQuery = q
-        ? (r.name || "").toLowerCase().includes(q) ||
-          (r.path || "").toLowerCase().includes(q) ||
-          (r.parentName || "").toLowerCase().includes(q)
-        : true;
-      const matchesStatus =
-        categoryStatus === "all"
-          ? r.status !== "deleted"
-          : r.status === categoryStatus;
-      return matchesQuery && matchesStatus;
-    });
-
-    const sorted = [...filtered];
-    const sortKey = categorySort;
-    sorted.sort((a, b) => {
-      if (sortKey === "name_asc") return a.name.localeCompare(b.name);
-      if (sortKey === "name_desc") return b.name.localeCompare(a.name);
-      if (sortKey === "order_desc") return b.order - a.order;
-      if (sortKey === "worksheets_desc") return b.worksheets - a.worksheets;
-      if (sortKey === "worksheets_asc") return a.worksheets - b.worksheets;
-      if (sortKey === "updated_desc")
-        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-      if (sortKey === "updated_asc")
-        return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
-      return a.order - b.order;
-    });
-
-    return sorted;
-  }, [
-    categories,
-    categoryMap,
-    categoryWorksheetCounts,
-    categoryQuery,
-    categoryStatus,
-    categorySort,
-  ]);
-
   const formatDate = (value) => {
     if (!value) return "-";
     const d = new Date(value);
@@ -205,172 +135,76 @@ export default function Home() {
   };
 
   return (
-    <div className="container">
+    <div className="content-container p-4">
       <SnackbarProvider />
-      <div className="page-inner px-5 mt-4 dynoba-dashboard">
+      <div className="dynoba-dashboard">
         <div className="dynoba-hero">
           <div>
-            <p className="dynoba-badge">Dynoba Admin</p>
-            <h2 className="fw-bold mb-2 text-dark">Dashboard Overview</h2>
+            <p className="dynoba-badge">Admin Panel</p>
+            <h2 className="fw-bold mb-1" style={{ color: "#000000", letterSpacing: "-0.03em" }}>Dashboard Overview</h2>
             <p className="dynoba-subtitle mb-0">
-              Manage worksheet content with a clean, model-driven overview.
+              Real-time summary of your worksheet content and activity.
             </p>
           </div>
           <div className="dynoba-welcome">
-            <span className="dynoba-label">Signed in as</span>
-            <strong>{user?.username || "Admin"}</strong>
+            <span className="dynoba-label">Logged In As</span>
+            <strong>{user?.username || "Master Admin"}</strong>
           </div>
         </div>
 
-        <div className="row g-4 mt-1">
+        <div className="row g-4 mb-4">
           {cards.map((card) => (
-            <div className="col-12 col-md-6 col-xl-6" key={card.title}>
-                <div className="dynoba-stat-card">
-                  <div className="dynoba-stat-head">
-                    <h6>{card.title}</h6>
-                  </div>
-                  <div className="dynoba-stat-value">{card.value}</div>
-                  <p>{card.helper}</p>
+            <div className="col-md-6" key={card.title}>
+              <div className="dynoba-stat-card">
+                <div className="dynoba-stat-head">
+                  <h6>{card.title}</h6>
                 </div>
+                <div className="dynoba-stat-value">{card.value}</div>
+                <p>{card.helper}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="row g-4 mt-2">
-          <div className="col-12">
-            <div className="dynoba-panel-card" id="recent-worksheets">
-              <div className="dynoba-panel-header">
-                <h5>Recent Worksheets</h5>
-                <span>{loading ? "Loading..." : "Past 7 days"}</span>
-              </div>
-              <div className="dynoba-table-wrap">
-                <table className="dynoba-table">
-                  <thead>
-                    <tr>
-                      <th>Title</th>
-                      <th>Category</th>
-                      <th>Status</th>
-                      <th>Updated</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {recentWorksheets.length > 0 ? (
-                      recentWorksheets.map((item) => (
-                        <tr key={item._id}>
-                          <td>{item.title}</td>
-                          <td>{item.category}</td>
-                          <td>
-                            <span className={`dynoba-status ${statusClass(item.status)}`}>
-                              {item.status}
-                            </span>
-                          </td>
-                          <td>{formatDate(item.updatedAt)}</td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan="4" className="text-center">
-                          {loading ? "Loading..." : "No worksheets in the past 7 days"}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+        <div className="dynoba-panel-card" id="recent-worksheets">
+          <div className="dynoba-panel-header">
+            <h5>Recent Worksheets</h5>
+            <span>{loading ? "Loading..." : "Past 7 days"}</span>
           </div>
-
-          {/*
-          <div className="col-12">
-            <div className="dynoba-panel-card" id="categories-overview">
-              <div className="dynoba-panel-header">
-                <h5>Categories Overview</h5>
-                <span>{loading ? "Loading..." : `${categories.length} total`}</span>
-              </div>
-              <div className="dynoba-filters">
-                <div className="dynoba-filter">
-                  <label>Search</label>
-                  <input
-                    className="form-control"
-                    value={categoryQuery}
-                    onChange={(e) => setCategoryQuery(e.target.value)}
-                    placeholder="Search by category or parent"
-                  />
-                </div>
-                <div className="dynoba-filter">
-                  <label>Status</label>
-                  <select
-                    className="form-select"
-                    value={categoryStatus}
-                    onChange={(e) => setCategoryStatus(e.target.value)}
-                  >
-                    <option value="all">All</option>
-                    <option value="active">Active</option>
-                    <option value="draft">Draft</option>
-                    <option value="deleted">Deleted</option>
-                  </select>
-                </div>
-                <div className="dynoba-filter">
-                  <label>Sort</label>
-                  <select
-                    className="form-select"
-                    value={categorySort}
-                    onChange={(e) => setCategorySort(e.target.value)}
-                  >
-                    <option value="order_asc">Order (Low â†’ High)</option>
-                    <option value="order_desc">Order (High â†’ Low)</option>
-                    <option value="name_asc">Name (A â†’ Z)</option>
-                    <option value="name_desc">Name (Z â†’ A)</option>
-                    <option value="worksheets_desc">Worksheets (High â†’ Low)</option>
-                    <option value="worksheets_asc">Worksheets (Low â†’ High)</option>
-                    <option value="updated_desc">Updated (Newest)</option>
-                    <option value="updated_asc">Updated (Oldest)</option>
-                  </select>
-                </div>
-              </div>
-              <div className="dynoba-table-wrap">
-                <table className="dynoba-table">
-                  <thead>
-                    <tr>
-                      <th>Category</th>
-                      <th>Parent</th>
-                      <th>Order</th>
-                      <th>Worksheets</th>
-                      <th>Status</th>
-                      <th>Updated</th>
+          <div className="dynoba-table-wrap">
+            <table className="dynoba-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recentWorksheets.length > 0 ? (
+                  recentWorksheets.map((item) => (
+                    <tr key={item._id}>
+                      <td className="fw-bold text-dark">{item.title}</td>
+                      <td>{item.category}</td>
+                      <td>
+                        <span className={`dynoba-status ${statusClass(item.status)}`}>
+                          {item.status}
+                        </span>
+                      </td>
+                      <td>{formatDate(item.updatedAt)}</td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {categoryRows.length > 0 ? (
-                      categoryRows.map((row) => (
-                        <tr key={row._id}>
-                          <td>{row.name}</td>
-                          <td>{row.parentName}</td>
-                          <td>{row.order}</td>
-                          <td>{row.worksheets}</td>
-                          <td>
-                            <span
-                              className={`dynoba-status ${statusClass(row.status)}`}
-                            >
-                              {row.status}
-                            </span>
-                          </td>
-                          <td>{formatDate(row.updatedAt)}</td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan="6" className="text-center">
-                          {loading ? "Loading..." : "No matching categories"}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" className="text-center py-5">
+                      {loading ? "Loading..." : "No worksheets recorded in the past 7 days"}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
-          */}
         </div>
       </div>
     </div>

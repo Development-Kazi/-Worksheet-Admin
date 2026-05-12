@@ -4,15 +4,19 @@ import { SnackbarProvider, enqueueSnackbar } from "notistack";
 import jsCookie from "js-cookie";
 import { useUser } from "@/context/UserContext";
 import { useEffect, useState } from "react";
-import "./fonts.min.css";
+import { usePathname } from "next/navigation";
+
 function Header() {
   const { user } = useUser();
+  const pathname = usePathname();
   const [adminData, setAdminData] = useState(null);
+
   useEffect(() => {
     if (user) {
       setAdminData(user);
     }
   }, [user]);
+
   async function logout() {
     const response = await APITemplate("admin/logout", "POST");
     jsCookie.remove("adminSession");
@@ -30,69 +34,52 @@ function Header() {
     }
   }
 
-  useEffect(() => {
-    import("./main.js");
-    import("bootstrap/js/src/collapse.js");
-  }, []);
+  const getPageTitle = () => {
+    if (pathname.includes("dashboard")) return "Dashboard";
+    if (pathname.includes("categories")) return "Categories";
+    if (pathname.includes("worksheets")) return "Worksheets";
+    if (pathname.includes("site-pages")) return "Website Pages";
+    if (pathname.includes("settings")) return "Settings";
+    return "Admin Panel";
+  };
 
   return (
     <>
       <SnackbarProvider />
-      <div className="main-header z-2">
-        <div className="main-header-logo">
-          <div className="logo-header" data-background-color="">
-            <a href="/" className="logo ">
-              <img
-                src="/img/logo.png"
-                alt="navbar brand"
-                className="navbar-brand"
-                height="40"
-              />
-            </a>
+      <header className="main-header">
+        <div className="navbar-header d-flex align-items-center justify-content-between">
+          <h1 className="page-title">{getPageTitle()}</h1>
+          
+          <div className="header-actions d-flex align-items-center gap-4" style={{ paddingTop: "8px" }}>
+            <div className="user-profile-summary d-none d-md-flex align-items-center" style={{ gap: "8px" }}>
+              <span style={{ color: "#666666", fontSize: "0.85rem", fontWeight: "500" }}>Logged in as</span>
+              <span style={{ color: "#000000", fontSize: "0.85rem", fontWeight: "700" }}>{adminData?.username || "Admin"}</span>
+            </div>
+            
             <button
-              className="navbar-toggler sidenav-toggler ms-auto"
               type="button"
+              onClick={logout}
+              className="btn btn-outline-dark d-flex align-items-center gap-2"
+              style={{ 
+                padding: "8px 16px",
+                fontSize: "0.85rem",
+                fontWeight: "600",
+                borderRadius: "4px",
+                border: "1px solid #ff4d4d",
+                color: "#ff4d4d",
+                background: "transparent",
+                transition: "all 0.2s ease"
+              }}
+              title="Logout"
             >
-              <span className="navbar-toggler-icon">
-                <i className="gg-menu-right"></i>
-              </span>
-            </button>
-            <button className="topbar-toggler more">
-              <i className="icon-options-vertical"></i>
+              <i className="fas fa-power-off" style={{ fontSize: "0.8rem" }}></i>
+              <span>Logout</span>
             </button>
           </div>
         </div>
-        <nav
-          data-background-color=""
-          className="navbar navbar-header navbar-header-transparent navbar-expand-lg bg-white"
-        >
-          <div className="container-fluid align-items-center">
-            <nav className="navbar navbar-header-left ms-4 navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"></nav>
-            <ul className="navbar-nav topbar-nav ms-md-auto gap-md-4 align-items-center">
-              <li className="nav-item topbar-user  hidden-caret">
-                <a className="nav-link profile-pic">
-                  <span style={{ color: "black" }} className="profile-username">
-                    <span className="op-7">Hi, </span>
-                    <span className="fw-bold">{adminData?.username}</span>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <div className="px-3">
-              {/* add tooltip */}
-
-              <button
-                type="button"
-                onClick={logout}
-                className="btn btn-lg btn-label-danger"
-              >
-                <i className="fas fa-power-off"></i>
-              </button>
-            </div>
-          </div>
-        </nav>
-      </div>
+      </header>
     </>
   );
 }
+
 export default Header;

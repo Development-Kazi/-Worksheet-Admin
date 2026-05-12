@@ -2,47 +2,26 @@
 import Link from "next/link.js";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation.js";
+import { useUser } from "@/context/UserContext";
 
 function Sidebar() {
   const pathname = usePathname();
+  const { user } = useUser();
 
   useEffect(() => {
     import("./main.js");
-    import("bootstrap/js/src/collapse.js");
   }, []);
 
   const isActive = (url) => pathname === url || pathname.startsWith(`${url}/`);
 
   return (
-    <div className="sidebar" data-background-color="">
+    <div className="sidebar">
       <div className="sidebar-logo">
-        <div className="logo-header" data-background-color="">
-          <button
-            className="navbar-toggler sidenav-toggler ms-auto"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="collapse"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon ">
-              <i style={{ color: "black" }} className="gg-menu-right "></i>
-            </span>
-          </button>
-          <button className="topbar-toggler more">
-            <i style={{ color: "black" }} className="icon-options-vertical"></i>
-          </button>
-          <div className="nav-toggle">
-            <button className="btn btn-toggle toggle-sidebar">
-              <i style={{ color: "black" }} className="gg-menu-right"></i>
-            </button>
-            <button className="btn btn-toggle sidenav-toggler">
-              <i style={{ color: "black" }} className="gg-menu-left"></i>
-            </button>
-          </div>
-        </div>
+        <div className="logo-box">W</div>
+        <span className="brand-name">Worksheet Admin</span>
       </div>
-      <div className="sidebar-wrapper ">
+      
+      <div className="sidebar-wrapper">
         <div className="sidebar-content">
           <ul className="nav nav-secondary mt-0">
             <li className={`nav-item ${isActive("/dashboard") ? "active" : ""}`}>
@@ -53,9 +32,6 @@ function Sidebar() {
             </li>
 
             <li className="nav-section mt-2">
-              <span className="sidebar-mini-icon">
-                <i className="fa fa-ellipsis-h"></i>
-              </span>
               <h4 className="text-section">Worksheet Management</h4>
             </li>
 
@@ -81,9 +57,6 @@ function Sidebar() {
             </li>
 
             <li className="nav-section mt-2">
-              <span className="sidebar-mini-icon">
-                <i className="fa fa-ellipsis-h"></i>
-              </span>
               <h4 className="text-section">Settings</h4>
             </li>
 
@@ -94,6 +67,20 @@ function Sidebar() {
               </Link>
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div className="sidebar-user-card">
+        <div className="user-avatar-container">
+          <img 
+            src={user?.avatar || "https://ui-avatars.com/api/?name=" + (user?.username || "Admin") + "&background=6a00f5&color=fff"} 
+            className="user-avatar" 
+            alt="User" 
+          />
+        </div>
+        <div className="user-info">
+          <span className="user-name">{user?.username || "Admin"}</span>
+          <span className="user-role">Administrator</span>
         </div>
       </div>
     </div>

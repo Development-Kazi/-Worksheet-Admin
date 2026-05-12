@@ -67,58 +67,112 @@ function Login() {
   return (
     <>
       <SnackbarProvider />
-      <div className="container-fluid mt-5">
-        <div className="row min-vh-100 gap-0 vw-100 flex-wrap-reverse mt-5">
-          <div className="col-md-12 px-0 mt-5">
-            <div
-              className="text-center px-4 px-md-5 mt-5"
+      <style jsx global>{`
+        .login-wrapper {
+          background-color: #ffffff !important;
+        }
+        .login-card {
+          background-color: #ffffff !important;
+        }
+        .login-card label {
+          color: #000000 !important;
+          font-weight: 700 !important;
+          opacity: 1 !important;
+          display: block !important;
+          margin-bottom: 8px !important;
+          font-size: 0.85rem !important;
+          text-transform: uppercase !important;
+          letter-spacing: 0.08em !important;
+        }
+        .login-card .form-control {
+          border: 2px solid #000000 !important;
+          color: #000000 !important;
+          background-color: #ffffff !important;
+        }
+        .login-card .form-control::placeholder {
+          color: #000000 !important;
+          opacity: 0.5 !important;
+        }
+        .login-card .btn-primary {
+          background-color: #6a00f5 !important;
+          border-color: #6a00f5 !important;
+          color: #ffffff !important;
+          font-weight: 700 !important;
+          box-shadow: 0 4px 12px rgba(106, 0, 245, 0.3) !important;
+        }
+        .login-card .btn-primary:hover {
+          background-color: #5800cc !important;
+          transform: translateY(-1px);
+        }
+        .logo-box {
+          background-color: #6a00f5 !important;
+          box-shadow: 0 0 20px rgba(106, 0, 245, 0.2) !important;
+        }
+      `}</style>
+      <div className="login-wrapper d-flex align-items-center justify-content-center min-vh-100">
+        <div 
+          className="login-card p-5"
+          style={{
+            width: "100%",
+            maxWidth: "440px",
+            border: "2px solid #000000",
+            borderRadius: "4px",
+            backgroundColor: "#ffffff"
+          }}
+        >
+          <div className="text-center mb-5">
+            <div className="logo-box mx-auto mb-3 d-flex align-items-center justify-content-center"
               style={{
-                maxWidth: "700px",
-                margin: "auto",
+                width: "48px",
+                height: "48px",
+                borderRadius: "4px",
+                color: "#ffffff",
+                fontWeight: "700",
+                fontSize: "1.5rem"
               }}
-            >
-              <h2 className="fw-bold ">Login</h2>
-              <div className="mt-4">
-                <div className="form-group" id="showEmail">
-                  <label htmlFor="email2">Email</label>
-                  <input
-                    type="email"
-                    className="form-control "
-                    placeholder="Enter Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="email2">Password</label>
-                  <input
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    type="password"
-                    className="form-control "
-                    placeholder="Enter Password"
-                  />
-                </div>
-                <button
-                  disabled={loading}
-                  onClick={handlesubmit}
-                  className="btn mt-3 btn-primary w-100 btn-lg"
-                >
-                  <div>
-                    <div>Login</div>
-                    {loading && (
-                      <div
-                        className="spinner-border spinner-border-sm ms-2 "
-                        role="status"
-                        aria-hidden="true"
-                      ></div>
-                    )}
-                  </div>
-                </button>
-              </div>
+            >W</div>
+            <h2 className="fw-bold" style={{ color: "#000000", letterSpacing: "-0.02em" }}>Admin Login</h2>
+            <p style={{ color: "#000000", fontSize: "0.95rem", fontWeight: "500" }}>Enter your credentials to access the panel</p>
+          </div>
 
-              <hr className="my-5" />
-            </div>
+          <div className="form-group mb-4">
+            <label>Email Address</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="admin@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={{ padding: "14px 16px" }}
+            />
+          </div>
+
+          <div className="form-group mb-4">
+            <label>Password</label>
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              className="form-control"
+              placeholder="••••••••"
+              style={{ padding: "14px 16px" }}
+            />
+          </div>
+
+          <button
+            disabled={loading}
+            onClick={handlesubmit}
+            className="btn btn-primary w-100 py-3 mt-3"
+          >
+            {loading ? (
+              <div className="spinner-border spinner-border-sm" role="status"></div>
+            ) : (
+              "SIGN IN"
+            )}
+          </button>
+          
+          <div className="text-center mt-5 pt-4" style={{ borderTop: "2px solid #000000" }}>
+            <p style={{ color: "#000000", fontSize: "0.85rem", fontWeight: "600", marginBottom: 0 }}>&copy; 2026 Worksheet Admin Panel</p>
           </div>
         </div>
       </div>
